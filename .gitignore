@@ -23,3 +23,10 @@ PROBLEMS/*/*.dat
 PROBLEMS/*/*.out
 PROBLEMS/*/*.session*
 __pycache__
+*.o
+*.out
+koral
+dump*
+*.dat
+*.h5
+.DS_Store

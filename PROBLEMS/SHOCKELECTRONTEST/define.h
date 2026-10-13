@@ -49,41 +49,6 @@
 //#define COLDOPACITIES
 //#define SKIPFANCYOPACITIES
 
-/************************************/
-//electron choices
-/************************************/
-
-#define EVOLVEELECTRONS
-//#define HEATELECTRONS_USEFIT
-#define HEATELECTRONS
-#define HEATELECTRONS_DELTA .5
-
-#define NOLOGINS
-#define NOLOGINS2
-
-#define MIXENTROPIESPROPERLY
-//#define DONOTMIXGASENTROPY
-//#define DONOTMIXSPECIESENTROPY
-#define UPWINDENTROPYMIXING
-//#define PARTLYUPWINDENTROPYMIXING
-//#define PARTLYRECONSTRUCTEDUPWINDENTROPYMIXING
-//#define LIMITFACTORINMIXING 1
-#define DONOTLIMITENTRINMIXING
-//#define OLDENTROPYMIXING
-//#define MIXENTROPIES_CONST_PRESSURE
-
-//updates entri at end of each timestep to satisfy ui = uu - ue
-//doesn't seem helpful
-//#define UPDATE_ENTRI_CONSTRAINT 
-
-#define UEUINTMINRATIO 1.e-16
-#define UIUINTMINRATIO 1.e-16
-#define TEMPEMINIMAL 1.e-4
-#define TEMPIMINIMAL 1.e-4
-#define TEMPEMINIMALFRACTION 1.e-16
-#define TEMPIMINIMALFRACTION 1.e-16
-#define TEMPEMAXIMALFRACTION 1.e3
-#define TEMPIMAXIMALFRACTION 1.e3
 
 /************************************/
 //magnetic choices
@@ -136,12 +101,26 @@
 #define MASS (1./MSUNCM*CCC_CGS) //so that time in seconds!
 #define BHSPIN 0.
 
+
+
+/************************************/
+// Test number choice
+/************************************/
+
+#define TESTNO 2
+
+
+/************************************/
+//Test number configuration
+/************************************/
+
+
+
+
+#if (TESTNO==0) //Ressler+15
 /************************************/
 //initial setup
 /************************************/
-#define TESTNO 1
-
-#if (TESTNO==0) //Ressler+15
 #define FORCEGAMMAGASFIXED
 #define FIXEDGAMMASPECIES
 #define GAMMA (5./3.)
@@ -157,9 +136,51 @@
 #define TI_INIT 30.
 #define TEINITFACTOR 1.
 #define VEL 1.e-3  
+/************************************/
+//electron choices
+/************************************/
+#define EVOLVEELECTRONS
+//#define HEATELECTRONS_USEFIT
+#define HEATELECTRONS
+#define HEATELECTRONS_DELTA .5
+
+#define NOLOGINS
+#define NOLOGINS2
+
+#define MIXENTROPIESPROPERLY
+//#define DONOTMIXGASENTROPY
+//#define DONOTMIXSPECIESENTROPY
+#define UPWINDENTROPYMIXING
+//#define PARTLYUPWINDENTROPYMIXING
+//#define PARTLYRECONSTRUCTEDUPWINDENTROPYMIXING
+//#define LIMITFACTORINMIXING 1
+#define DONOTLIMITENTRINMIXING
+//#define OLDENTROPYMIXING
+//#define MIXENTROPIES_CONST_PRESSURE
+
+//updates entri at end of each timestep to satisfy ui = uu - ue
+//doesn't seem helpful
+//#define UPDATE_ENTRI_CONSTRAINT 
+
+#define UEUINTMINRATIO 1.e-16
+#define UIUINTMINRATIO 1.e-16
+#define TEMPEMINIMAL 1.e-4
+#define TEMPIMINIMAL 1.e-4
+#define TEMPEMINIMALFRACTION 1.e-16
+#define TEMPIMINIMALFRACTION 1.e-16
+#define TEMPEMAXIMALFRACTION 1.e3
+#define TEMPIMAXIMALFRACTION 1.e3
 #endif
+
+
+
+
+
 
 #if (TESTNO==1) //modified Ressler+15
+/************************************/
+//initial setup
+/************************************/
 #define FORCEGAMMAGASFIXED
 #define FIXEDGAMMASPECIES
 #define GAMMA (5./3.)
@@ -175,17 +196,66 @@
 #define TI_INIT 10.
 #define TEINITFACTOR 1.
 #define VEL 1.e-3
+/************************************/
+//electron choices
+/************************************/
+#define EVOLVEELECTRONS
+//#define HEATELECTRONS_USEFIT
+#define HEATELECTRONS
+#define HEATELECTRONS_DELTA .5
+
+#define NOLOGINS
+#define NOLOGINS2
+
+#define MIXENTROPIESPROPERLY
+//#define DONOTMIXGASENTROPY
+//#define DONOTMIXSPECIESENTROPY
+#define UPWINDENTROPYMIXING
+//#define PARTLYUPWINDENTROPYMIXING
+//#define PARTLYRECONSTRUCTEDUPWINDENTROPYMIXING
+//#define LIMITFACTORINMIXING 1
+#define DONOTLIMITENTRINMIXING
+//#define OLDENTROPYMIXING
+//#define MIXENTROPIES_CONST_PRESSURE
+
+//updates entri at end of each timestep to satisfy ui = uu - ue
+//doesn't seem helpful
+//#define UPDATE_ENTRI_CONSTRAINT 
+
+#define UEUINTMINRATIO 1.e-16
+#define UIUINTMINRATIO 1.e-16
+#define TEMPEMINIMAL 1.e-4
+#define TEMPIMINIMAL 1.e-4
+#define TEMPEMINIMALFRACTION 1.e-16
+#define TEMPIMINIMALFRACTION 1.e-16
+#define TEMPEMAXIMALFRACTION 1.e3
+#define TEMPIMAXIMALFRACTION 1.e3
 #endif
 
-#if (TESTNO==10) //to test electron heating 
-#define FIXEDGAMMASPECIES
+
+
+
+
+
+
+
+
+
+
+
+
+#if (TESTNO==2) //para jugar con parámetros
+/************************************/
+//initial setup
+/************************************/
 #define FORCEGAMMAGASFIXED
-//#define CONSISTENTGAMMA
-#define DISSIPATIONFROMGASONLY 
+#define FIXEDGAMMASPECIES
 #define GAMMA (5./3.)
 #define GAMMAE (4./3.) //gamma of electrons
 #define GAMMAI (5./3.) //gamma of ions
-#define NSTEPSTOP 500000.
+#define HEATELECTRONSATENDRK2
+#define DISSIPATIONFROMGASONLY
+#define NSTEPSTOP 50000.
 #define NOUTSTOP 30
 #define DTOUT1 (10)  //dt for output in seconds
 #define RHO_INIT 1.0
@@ -193,45 +263,55 @@
 #define TI_INIT 10.
 #define TEINITFACTOR 1.
 #define VEL 1.e-3
+/************************************/
+//electron choices
+/************************************/
+#define EVOLVEELECTRONS
+//#define HEATELECTRONS_USEFIT
+#define HEATELECTRONS
+#define HEATELECTRONS_DELTA .25
+
+//#define NOLOGINS
+//#define NOLOGINS2
+
+//#define MIXENTROPIESPROPERLY
+//#define DONOTMIXGASENTROPY
+//#define DONOTMIXSPECIESENTROPY
+//#define UPWINDENTROPYMIXING
+//#define PARTLYUPWINDENTROPYMIXING
+//#define PARTLYRECONSTRUCTEDUPWINDENTROPYMIXING
+//#define LIMITFACTORINMIXING 1
+//#define DONOTLIMITENTRINMIXING
+//#define OLDENTROPYMIXING
+//#define MIXENTROPIES_CONST_PRESSURE
+
+//updates entri at end of each timestep to satisfy ui = uu - ue
+//doesn't seem helpful
+//#define UPDATE_ENTRI_CONSTRAINT 
+
+#define UEUINTMINRATIO 1.e-16
+#define UIUINTMINRATIO 1.e-16
+#define TEMPEMINIMAL 1.e-4
+#define TEMPIMINIMAL 1.e-4
+#define TEMPEMINIMALFRACTION 1.e-16
+#define TEMPIMINIMALFRACTION 1.e-16
+#define TEMPEMAXIMALFRACTION 1.e3
+#define TEMPIMAXIMALFRACTION 1.e3
 #endif
 
 
-#if (TESTNO==20) //to test electron heating 
-#define CONSISTENTGAMMA
-#define FIXEDGAMMASPECIES
-//#define DISSIPATIONFROMGASONLY 
-#define GAMMA (5./3.)
-#define GAMMAE (4./3.) //gamma of electrons
-#define GAMMAI (5./3.) //gamma of ions
-#define NSTEPSTOP 500000.
-#define NOUTSTOP 30
-#define DTOUT1 (10)  //dt for output in seconds
-#define RHO_INIT 1.
-#define TE_INIT .1
-#define TI_INIT 10.
-#define TEINITFACTOR 1.
-#define VEL 1.e-3
-#endif
 
 
-#if (TESTNO==100) //to test electron heating 
-#define FORCEGAMMAGASFIXED
-//#define CONSISTENTGAMMA
-//#define FIXEDGAMMASPECIES
-#define DISSIPATIONFROMGASONLY
-#define HEATELECTRONSATENDRK2
-#define GAMMA (5./3.)
-#define GAMMAE (4./3.) //gamma of electrons
-#define GAMMAI (5./3.) //gamma of ions
-#define NSTEPSTOP 50000.
-#define NOUTSTOP 5
-#define DTOUT1 (100.)  //dt for output in seconds
-#define RHO_INIT 1.
-#define TE_INIT .1
-#define TI_INIT 10.
-#define TEINITFACTOR 1.
-#define VEL 1.e-3
-#endif
+
+
+
+
+
+
+
+
+
+
 
 /************************************/
 //coordinates / resolution

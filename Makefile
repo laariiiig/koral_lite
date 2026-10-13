@@ -2,18 +2,18 @@
 
 ifneq ($(SERIAL),1)
 CC=mpicc 
-CFLAGS=-O3 -DMPI -fcommon
+CFLAGS=-O3 -DMPI -fcommon -I/opt/homebrew/include
 
 else
 //CC=gcc
 //CFLAGS=-O3 -Wno-unused-result -fopenmp -fsanitize=address -g -fno-omit-frame-pointer -Wunused-function 
 
-CC=/usr/bin/h5cc
-CFLAGS = -O3 -I/usr/lib/gcc/x86_64-linux-gnu/11/include -I/usr/include/hdf5/serial -Wno-unused-result -Wunused-function -w -fopenmp -fcommon -fno-omit-frame-pointer -fsanitize=address
+CC=/opt/homebrew/bin/h5cc
+CFLAGS=-O3 -I/opt/homebrew/include -Wno-unused-result -Wunused-function -w -fcommon -fno-omit-frame-pointer -fsanitize=address
 
 endif
 
-LIBS=-lm -lgsl -lgslcblas -lfftw3 -lrt -lhdf5_serial -lsiloh5 -lstdc++
+LIBS=-L/opt/homebrew/lib -lm -lgsl -lgslcblas -lfftw3 -lhdf5 -lsiloh5 -lstdc++
 
 RM=/bin/rm
 OBJS = mpi.o u2prad.o magn.o silo.o postproc.o fileop.o misc.o physics.o finite.o problem.o metric.o relele.o rad.o opacities.o u2p.o u2p_ff.o frames.o p2u.o nonthermal.o
