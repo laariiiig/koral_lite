@@ -2,18 +2,22 @@
 
 ifneq ($(SERIAL),1)
 CC=mpicc 
-CFLAGS=-O3 -DMPI -fcommon -I/opt/homebrew/include
+CFLAGS=-O3 -DMPI -DNOSILO -fcommon 
+LIBS=-lm -lgsl -lgslcblas -lrt
 
 else
 //CC=gcc
 //CFLAGS=-O3 -Wno-unused-result -fopenmp -fsanitize=address -g -fno-omit-frame-pointer -Wunused-function 
 
-CC=/opt/homebrew/bin/h5cc
-CFLAGS=-O3 -I/opt/homebrew/include -Wno-unused-result -Wunused-function -w -fcommon -fno-omit-frame-pointer -fsanitize=address
+CC=/usr/bin/h5cc
+CFLAGS = -O3 -L$(HOME)/silo/lib -I$(HOME)/silo/include -Wno-unused-result -Wunused-function -w -fopenmp -fcommon -fno-omit-frame-pointer -Wno-error=incompatible-pointer-types -Wno-error=implicit-function-declaration -Wno-error=int-conversion
+LIBS=-lm -lgsl -lgslcblas -lrt -lsiloh5 -lhdf5
 
 endif
 
-LIBS=-L/opt/homebrew/lib -lm -lgsl -lgslcblas -lfftw3 -lhdf5 -lsiloh5 -lstdc++
+//LIBS=-lm -lgsl -lgslcblas -lfftw3 -lrt -lhdf5_serial -lsiloh5 -lstdc++
+//LIBS=-lm -lgsl -lgslcblas -lrt -lhdf5 -lsilo -lrt
+//LIBS=-lm -lgsl -lgslcblas -lrt 
 
 RM=/bin/rm
 OBJS = mpi.o u2prad.o magn.o silo.o postproc.o fileop.o misc.o physics.o finite.o problem.o metric.o relele.o rad.o opacities.o u2p.o u2p_ff.o frames.o p2u.o nonthermal.o
